@@ -1,0 +1,229 @@
+<div>
+	<h4>Organization</h4> 
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="vm.resetForm()">Add a Organization</button>
+<br /><br />
+	<div class="row">
+		<div class="col-md-12">	
+			<div id="grid1" ui-grid="vm.orgListOptions" ui-grid-auto-resize></div>
+		</div>	
+	</div>
+
+	<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">          
+          <h4 class="modal-title">Create a Organization</h4>
+        </div>
+        <div class="modal-body">
+          <form name="createOrgForm">
+          	<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.orgname.$invalid">*</i>Organization Name</label>
+				<input type="text" class="form-control" ng-model="vm.org.org_name" name="orgname" placeholder="Enter Organization Name" required infy-focus>				
+				<div class="error-container" ng-show="createOrgForm.orgname.$touched && createOrgForm.orgname.$error.required">Field is required</div>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.firstname.$invalid">*</i>Contact Person Firstname</label>
+				<input type="text" class="form-control" ng-model="vm.org.cp_first_name" name="firstname" placeholder="Enter Firstname" required>				
+				<div class="error-container" ng-show="createOrgForm.firstname.$touched && createOrgForm.firstname.$error.required">Field is required</div>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.lastname.$invalid">*</i>Contact Person Lastname</label>
+				<input type="text" class="form-control" ng-model="vm.org.cp_last_name" name="lastname" placeholder="Enter Lastname" required>				
+				<div class="error-container" ng-show="createOrgForm.lastname.$touched && createOrgForm.lastname.$error.required">Field is required</div>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.email.$invalid">*</i>Email</label>
+				<input type="email" class="form-control" ng-model="vm.org.cp_email" name="email" placeholder="Enter Email" required>				
+				<div class="error-container" ng-show="createOrgForm.email.$touched && createOrgForm.email.$error.required">Field is required</div>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.report_email.$invalid">*</i>Report_Email</label>
+				<input type="text" class="form-control" ng-model="vm.org.cp_report_email" name="report_email" placeholder="abc@gmail.com,xyz@gmail.com" required>				
+				<div class="error-container" ng-show="createOrgForm.report_email.$touched && createOrgForm.report_email.$error.required">Field is required</div>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.service.$invalid">*</i>Service</label>
+				<select class="form-control" multiple name="dev_type" ng-model="vm.org.service" ng-options="o as o for o in vm.services"></select>
+			</div>
+			<div ng-show="role" class="form-group">
+					<label><i class="required-ind" ng-if="createOrgForm.ssl_category.$invalid"></i>VAS Category</label>
+					<select class="form-control" multiple name="category_type" ng-model="vm.org.ssl_category" ng-options="o as o for o in vm.ssl_categories"></select>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.address.$invalid">*</i>Address</label>
+				<textarea type="password" class="form-control" ng-model="vm.org.org_address" name="address" required></textarea>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.tariff.$invalid">*</i>Tariff</label>
+				<select class="form-control" name="tariff_id" ng-model="vm.org.tariff_id" ng-options="x.tariff_id as x.tariff_name + ' - ' + x.free_traffic for x in vm.tariff" required><option value="">-- Select Tariff Type --</option></select>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.date.$invalid">*</i>Effective Date</label>
+				<input type="date" min="{{vm.default_date}}" class="form-control" ng-model="vm.org.effective_date" required>
+				<div class="error-container" ng-show="createOrgForm.date.$touched && createOrgForm.date.$error.required">Field is required</div>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.org_crm_id.$invalid">*</i>Organization CRM ID</label>
+				<input type="text" class="form-control" ng-model="vm.org.org_crm_id" name="org_crm_id" placeholder="Enter CRM ID" required>				
+				<div class="error-container" ng-show="createOrgForm.org_crm_id.$touched && createOrgForm.org_crm_id.$error.required">Field is required</div>
+			</div>
+			<div class="form-group">
+				<label>GST</label>
+				<input type="text" class="form-control" ng-model="vm.org.GST" name="GST" placeholder="Enter GST" >
+			</div>
+			<div class="form-group">
+				<label>PAN</label>
+				<input type="text" class="form-control" ng-model="vm.org.PAN" name="PAN" placeholder="Enter PAN" >	
+			</div>
+			<div class="form-group">
+				<label>CIN</label>
+				<input type="text" class="form-control" ng-model="vm.org.CIN" name="CIN" placeholder="Enter CIN" >
+			</div>
+			<div class="form-group">
+				<label>TAN</label>
+				<input type="text" class="form-control" ng-model="vm.org.TAN" name="TAN" placeholder="Enter TAN" >
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.sales_person_name.$invalid">*</i>Sales Person Name</label>
+				<input type="text" class="form-control" ng-model="vm.org.sales_person_name" name="sales_person_name" placeholder="Enter Sales Person Name" required>	
+				<div class="error-container" ng-show="createOrgForm.sales_person_name.$touched && createOrgForm.sales_person_name.$error.required">Field is required</div>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.sales_person_email.$invalid">*</i>Sales Person Email</label>
+				<input type="email" class="form-control" ng-model="vm.org.sales_person_email" name="sales_person_email" placeholder="Enter Sales Person Email" required>	
+				<div class="error-container" ng-show="createOrgForm.sales_person_email.$touched && createOrgForm.sales_person_email.$error.required">Field is required</div>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.discount.$invalid">*</i>Discount</label>
+				<select class="form-control" name="discount" ng-model="vm.org.discount" ng-options="o as o for o in vm.discount" required><option value="">-- Select Discount Type --</option></select>
+			</div>
+			<div class="col-md-12" class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.mail_status.$invalid">*</i>Mail Status</label>
+				<input type="checkbox" class="form-control" ng-model="vm.org.mail_status">	
+				<div class="error-container" ng-show="createOrgForm.mail_status.$touched && createOrgForm.mail_status.$error.required">Field is required</div>
+			</div>
+          </form>
+        </div>
+        <div class="modal-footer">          
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primay" ng-disabled="createOrgForm.$invalid" ng-click="vm.createOrg()">Create</button>	
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="updateOrgModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">          
+          <h4 class="modal-title">Update Organization</h4>
+        </div>
+        <div class="modal-body">
+          <form name="createOrgForm">
+          	<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.orgname.$invalid">*</i>Organization Name</label>
+				<input type="text" class="form-control" ng-model="vm.org.org_name" name="orgname"  required infy-focus>				
+				<div class="error-container" ng-show="createOrgForm.orgname.$touched && createOrgForm.orgname.$error.required">Field is required</div>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.firstname.$invalid">*</i>Contact Person Firstname</label>
+				<input type="text" class="form-control" ng-model="vm.org.cp_first_name" name="firstname"  required>				
+				<div class="error-container" ng-show="createOrgForm.firstname.$touched && createOrgForm.firstname.$error.required">Field is required</div>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.lastname.$invalid">*</i>Contact Person Lastname</label>
+				<input type="text" class="form-control" ng-model="vm.org.cp_last_name" name="lastname" required>				
+				<div class="error-container" ng-show="createOrgForm.lastname.$touched && createOrgForm.lastname.$error.required">Field is required</div>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.email.$invalid">*</i>Email</label>
+				<input type="email" class="form-control" ng-model="vm.org.cp_email" name="email"  required>				
+				<div class="error-container" ng-show="createOrgForm.email.$touched && createOrgForm.email.$error.required">Field is required</div>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.report_email.$invalid">*</i>Report_Email</label>
+				<input type="text" class="form-control" ng-model="vm.org.cp_report_email" name="report_email" required>				
+				<div class="error-container" ng-show="createOrgForm.report_email.$touched && createOrgForm.report_email.$error.required">Field is required</div>
+			</div>
+			
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.service.$invalid">*</i>Service</label>
+				<select class="form-control" name="dev_type" multiple ng-model="vm.org.service" ng-options="o as o for o in vm.services" ng-change="vm.selected_service(vm.org.service)"></select>
+			</div>
+			<div ng-show="role" class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.ssl_category.$invalid"></i>VAS Category</label>
+				<select class="form-control" name="category_type" multiple ng-model="vm.org.ssl_category" ng-options="o as o for o in vm.ssl_categories"></select>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.address.$invalid">*</i>Address</label>
+				<textarea type="password" class="form-control" ng-model="vm.org.org_address" name="address" required></textarea>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.tariff.$invalid">*</i>Tariff</label>
+				<select class="form-control" name="tariff_id" ng-model="vm.org.tariff_id" ng-options="x.tariff_id as x.tariff_name + ' - ' + x.free_traffic for x in vm.tariff" ng-change="tariff_plan_change()" required><option value="">-- Select Tariff Type --</option></select>
+				<i ng-show="note_flag">Note: Please update the Effective date field</i>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.date.$invalid">*</i>Effective Date</label>
+				<input type="date" ng-if="!date_flag"  class="form-control" ng-model="vm.org.effective_date"  ng-click="updation()" name="date" >
+				<input type="date" ng-if="date_flag" min="{{vm.default_date}}" class="form-control" ng-model="vm.org.effective_date" name="date">
+				<div class="error-container" ng-show="createOrgForm.date.$touched && createOrgForm.date.$error.required">Field is required</div>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.org_crm_id.$invalid">*</i>Organization CRM ID</label>
+				<input type="text" class="form-control" ng-model="vm.org.org_crm_id" name="org_crm_id" required>	
+				<div class="error-container" ng-show="createOrgForm.org_crm_id.$touched && createOrgForm.org_crm_id.$error.required">Field is required</div>
+			</div>
+			<div class="form-group">
+				<label>GST</label>
+				<input type="text" class="form-control" ng-model="vm.org.GST" name="GST" placeholder="Enter GST" >
+			</div>
+			<div class="form-group">
+				<label>PAN</label>
+				<input type="text" class="form-control" ng-model="vm.org.PAN" name="PAN" placeholder="Enter PAN" >	
+			</div>
+			<div class="form-group">
+				<label>CIN</label>
+				<input type="text" class="form-control" ng-model="vm.org.CIN" name="CIN" placeholder="Enter CIN" >
+			</div>
+			<div class="form-group">
+				<label>TAN</label>
+				<input type="text" class="form-control" ng-model="vm.org.TAN" name="TAN" placeholder="Enter TAN" >
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.sales_person_name.$invalid">*</i>Sales Person Name</label>
+				<input type="text" class="form-control" ng-model="vm.org.sales_person_name" name="sales_person_name" required>	
+				<div class="error-container" ng-show="createOrgForm.sales_person_name.$touched && createOrgForm.sales_person_name.$error.required">Field is required</div>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.sales_person_email.$invalid">*</i>Sales Person Email</label>
+				<input type="email" class="form-control" ng-model="vm.org.sales_person_email" name="sales_person_email" required>	
+				<div class="error-container" ng-show="createOrgForm.sales_person_email.$touched && createOrgForm.sales_person_email.$error.required">Field is required</div>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.discount.$invalid">*</i>Discount</label>
+				<select class="form-control" name="discount" ng-model="vm.org.discount" ng-options="o as o for o in vm.discount" required><option value="">-- Select Discount Type --</option></select>
+			</div>
+			<div class="col-md-12" class="form-group">
+				<label><i class="required-ind" ng-if="createOrgForm.mail_status.$invalid">*</i>Mail Status</label>{{vm.org.mail_status}}
+
+				<input type="checkbox" class="form-control" ng-model="vm.org.mail_status" ng-true-value="'true'" ng-false-value="'false'">	
+				<div class="error-container" ng-show="createOrgForm.mail_status.$touched && createOrgForm.mail_status.$error.required">Field is required</div>
+			</div>
+          </form>
+        </div>
+        <div class="modal-footer">          
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primay" ng-disabled="createOrgForm.$invalid" ng-click="vm.updateOrg()">Update</button>	
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

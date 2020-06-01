@@ -1,0 +1,29 @@
+<div class="container">
+  <form name="createOrgSettingForm">
+      <div class="form-group">
+      <label><i class="required-ind" ng-if="createOrgSettingForm.tax.$invalid">*</i>TAX</label>
+      <input type="text" class="form-control" ng-model="vm.org.tax" name="tax" placeholder="Enter Tax" required>       
+      <div class="error-container" ng-show="createOrgSettingForm.tax.$touched && createOrgSettingForm.tax.$error.required">Field is required</div>
+    </div>
+    <div class="form-group">
+      <label><i class="required-ind" ng-if="createOrgSettingForm.invoice_no.$invalid">*</i>Invoice Number</label>
+      <input type="text" class="form-control" ng-model="vm.org.invoice_no" name="invoice_no" placeholder="Enter Invoice Number" required>        
+      <div class="error-container" ng-show="createOrgSettingForm.invoice_no.$touched && createOrgSettingForm.invoice_no.$error.required">Field is required</div>
+    </div>
+    <div class="form-group">
+      <label><i class="required-ind" ng-if="createOrgSettingForm.gst.$invalid">*</i>GST</label>
+      <input type="text" class="form-control" ng-model="vm.org.GSTIN" name="gst" placeholder="Enter GST" required>       
+      <div class="error-container" ng-show="createOrgSettingForm.gst.$touched && createOrgSettingForm.gst.$error.required">Field is required</div>
+    </div>
+    <div class="form-group">
+      <label><i class="required-ind" ng-if="createOrgSettingForm.certificate_auto_renewal_duration.$invalid">*</i>AutoRenewal Duration</label>
+      <input type="text" class="form-control" ng-model="vm.org.certificate_auto_renewal_duration" name="certificate_auto_renewal_duration" placeholder="Enter AutoRenewal Duration" required>       
+      <div class="error-container" ng-show="createOrgSettingForm.certificate_auto_renewal_duration.$touched && createOrgSettingForm.certificate_auto_renewal_duration.$error.required">Field is required</div>
+    </div>
+    
+  </form>
+
+  <div class="modal-footer">                
+      <button type="button" class="btn btn-primary" ng-disabled="createOrgSettingForm.$invalid" ng-click="vm.updateSetting()">Update</button>  
+    </div>
+</div>

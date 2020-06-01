@@ -1,0 +1,33 @@
+{
+  "name": "infynect",
+  "authors": "",
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/app/components/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.5",
+    "bootstrap": "^3.3.7",
+    "angular-ui-router": "~0.2.18",
+    "angular-ui-grid": "^4.0.0",
+    "d3": "~3.4.1",
+    "nvd3": "~v1.1.15-beta",
+    "angularjs-nvd3-directives": "^0.0.7",
+    "components-font-awesome": "^5.4.2",
+    "chart.js": "^2.8.0"
+  },
+  "resolutions": {
+    "d3": "~3.4.1",
+    "angular": "~1.5"
+  }
+}

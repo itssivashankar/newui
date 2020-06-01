@@ -1,0 +1,110 @@
+<div>
+
+	<div class="col-md-12">  
+	<div class="col-md-9 pull-right"> 
+		<button class="btn" ng-click="submit()"><i class="fa fa-refresh"></i>
+		</button> 
+	 </div>
+	    <h4>Service Request</h4>
+
+	    <div id="grid1" ui-grid="serviceRequestListOptions" ui-grid-auto-resize></div>
+	</div> 
+     
+</div>
+<br><br><br>     
+
+  <div class="modal fade" id="updateServiceRequestModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">   
+        	<div class="close"  data-dismiss="modal" >x</div>       
+          	<h4 class="modal-title">Update Servicerequest</h4>
+        </div>
+        <div class="modal-body">
+          <form name="createServiceRequestForm">
+			<div class="form-group">
+				<b>Request Id</b><nobr>
+					<ul class="unstyled">
+					<li>{{servicerequest.request_id}}</li></nobr></ul>
+			</div>
+			<div class="form-group">
+				<b>Local IP</b><nobr>
+					<ul class="unstyled">
+					<li>{{servicerequest.local_ip}}</li></nobr></ul>
+			</div>
+			<div class="form-group">
+				<b>Public IP</b><nobr>
+					<ul class="unstyled">
+					<li>{{servicerequest.public_ip}}</li></nobr></ul>
+			</div>
+			<div class="form-group">
+				<b>Network</b><nobr>
+					<ul class="unstyled">
+					<li ng-repeat="x in servicerequest.network">
+						{{x.key}}-{{x.value}}
+					</li></nobr></ul>
+			</div>
+			<div class="form-group">
+				<b>Memory</b><nobr>
+					<ul class="unstyled">
+					<li>{{servicerequest.memory}}</li></nobr></ul>
+			</div>
+			<div class="form-group">
+				<b>Uuid</b><nobr>
+					<ul class="unstyled">
+					<li>{{servicerequest.uuid}}</li></nobr></ul>
+			</div>
+			<div ng-show= "vm.stats">
+				<div ng-show="status == 'INITIATED'" class="form-group">
+					<label><i class="required-ind" ng-if="createServiceRequestForm.storage.$invalid"></i>Storage</label>
+					<select id="select-selected" class="form-control" ng-model="storage" ng-options="x.key as x.key + ' - '+ x.value for x in servicerequest.storage" name="storage" required>
+					<option value="">-- Select  Storage --</option>
+					</select>
+				</div>
+				<div ng-show="status == 'INITIATED'" class="form-group">
+					<label><i class="required-ind" ng-if="createServiceRequestForm.customer_name.$invalid"></i>Organization Name, IP and Location </label>
+					<select id="select-selected" class="form-control" ng-model="server_ip" ng-change="getDetails()" ng-options="x.server_ip as x.org_name + ' , ' + x.server_ip+','+x.installation_location for x in installation_details" name="installation_info" required>
+					<option value="">-- Select Organization Name , IP and Location --</option>
+					</select> 
+				</div>
+				<div class="form-group">
+					<b>Installation Mode</b><nobr>
+					<ul class="unstyled">
+					<li>{{vm.installation_mode}}</li></nobr></ul>
+		        </div>
+		        <div ng-show= "vm.flag">
+					<div class="form-group">
+						<b>Exclude Interface</b><nobr>
+						<ul class="unstyled">
+						<li>{{vm.exclude_interfaces}}</li></nobr></ul>
+			        </div>
+			    </div>	
+			</div>
+			<div ng-show= "vm.stat">
+				<div class="form-group">
+					<b>Disk Name</b><nobr>
+					<ul class="unstyled">
+					<li>{{servicerequest.disk_name}}</li></nobr></ul>
+				</div>
+				<div class="form-group">
+					<b>Organization Name , IP and Installation Location</b><nobr>
+					<ul class="unstyled">
+					<li>{{org_details}}</li></nobr></ul>
+				</div>
+				<div class="form-group">
+					<b>Installation Mode</b><nobr>
+					<ul class="unstyled">
+					<li>{{servicerequest.installation_mode}}</li></nobr></ul>
+				</div>
+		    </div>
+          </form>
+	        <div ng-show="status == 'INITIATED'" class="modal-footer">
+	          <button type="button" class="btn btn-default" ng-click="vm.rejectServiceRequest()">Reject</button>
+	          <button type="button" class="btn btn-primay" ng-disabled="createServiceRequestForm.$invalid" ng-click="vm.updateServiceRequest()">Accept</button>	
+	        </div>
+
+      	</div>
+    </div>
+  </div>

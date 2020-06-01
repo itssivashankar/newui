@@ -1,0 +1,33 @@
+<div class="container">
+    <form name="createServiceForm">
+        <span role="button" data-toggle="collapse" data-target="#service">
+            <div class="toggle-header">
+                <p class="pull-left"><i class="fa fa-plus"></i> Add Service</p>
+            </div>
+        </span>
+        <div id="service" class="collapse">
+      <div class="form-group">
+			<label><i class="required-ind" ng-if="createServiceForm.service.$invalid"></i>*Service Name</label>
+			<input type="text" class="form-control" ng-model="service" name="service" placeholder="Enter the service" required>				
+			<div class="error-container" ng-show="createServiceForm.service.$touched && createServiceForm.service.$error.required">Field is required</div>
+		</div>
+		<div class="form-group">
+			<label><i class="required-ind" ng-if="createServiceForm.default.$invalid"></i>Default ?</label>
+			<input type="checkbox" class="form-control" ng-model="default">			
+			<div class="error-container" ng-show="createServiceForm.default.$touched && createServiceForm.default.$error.required">Field is required</div>
+		</div>
+
+        <div class="modal-footer">             
+            <button type="button" class="btn btn-primary" ng-disabled="createServiceForm.$invalid" ng-click="submit()">Submit</button> 
+        </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-md-12">  
+            <h4>Services</h4>
+            <div id="grid1" ui-grid="vm.servicesListOptions" ui-grid-auto-resize></div>
+        </div>  
+        
+    </div><br><br><br>
+
+</div>

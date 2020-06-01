@@ -1,0 +1,101 @@
+<div ng-show="infyLoading" id="infyn-loader" style="position: absolute; height: 100%; width: 100%; z-index: 100000;">
+    <div class="loading-spinner"></div>
+</div>
+
+<div ng-if="errMsg!=null" msg-destroy class="alert" style="position: absolute; z-index: 100000; width: 50%; margin-left: 620px; border:2px solid red; background:white; color:gray; top:73px">
+  <strong ng-bind="errMsg"></strong>
+  <a href="javascript:;" class="pull-right" ng-click="errMsg=null"><i class="fa fa-remove"></i></a>
+</div>
+
+<div ng-if="infoMsg!=null" msg-destroy class="alert" style="position: absolute; z-index: 100000; width: 95%; margin-left: 30px; border:2px solid blue; background:white; color:gray;">
+        <strong ng-bind="infoMsg"></strong>
+        <a href="javascript:;" class="pull-right" ng-click="infoMsg=null"><i class="fa fa-remove"></i></a>
+</div>
+
+<div ng-if="successMsg!=null" msg-destroy class="alert" style="position: absolute; z-index: 100000; width: 50%; margin-left: 620px; border:2px solid green; background:white; color:gray; top:73px">
+  <strong ng-bind="successMsg"></strong>
+  <a href="javascript:;" class="pull-right" ng-click="successMsg=null"><i class="fa fa-remove"></i></a>
+
+</div>
+
+<div ng-if="warningMsg" msg-destroy class="alert" style="position: absolute; z-index: 100000; width: 50%; margin-left: 620px; border:2px solid yellow; background:white; color:gray; top:73px">
+  <strong ng-bind="warningMsg"></strong>
+  <a href="javascript:;" class="pull-right" ng-click="warningMsg=null"><i class="fa fa-remove"></i></a>
+
+</div>
+
+<nav class="navbar navbar-icon-top navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>            
+            <a class="navbar-brand" ui-sref="main.dashboard">
+                <img width="150" src="images/ec-logo.png"/>
+            </a>            
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-if="vm.hasView('dashboard')">
+                    <a ui-sref="main.dashboard">
+                        <i class="fa fa-tachometer-alt">
+                        </i>
+                        Board
+                    </a>
+                </li>
+               <li ng-if="vm.hasView('stream')">
+                    <a ui-sref="main.stream">
+                        <i class="fa fa-users">
+                            <!-- <span class="badge badge-danger">11</span> -->
+                        </i>
+                        Students
+                    </a>
+                </li>
+
+                 <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-user-circle-o"></i>
+                        {{vm.UserName}} <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                       
+                     <li><a data-ng-click="vm.logout()">Logout</a></li>
+
+                    </ul>
+                </li>
+
+
+               <!--  <li class="dropdown">                    
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a ui-sref="main.admin-profile">Users</a></li>
+                        <li><a ui-sref="main.org">Organization</a></li>                                 
+                        <li><a ui-sref="main.device">Devices</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
+                    <ul class="dropdown-menu">                                                
+                        <li><a ui-sref="main.profile">Update Profile</a></li> 
+                        <li><a ui-sref="main.certificates">Certificates</a></li>                       
+                        <li><a data-ng-click="vm.logout()">Logout</a></li>
+                    </ul>
+                </li> -->
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+<div ui-view="main" class="height-80-percent container-fluid">
+
+</div>
+<footer class="col-md-12 no-padding footer" style="height: 30px;">
+    <div class="container">
+        <span class="text-muted">© 2020 All Rights Reserved. </span>
+    </div>
+</footer>

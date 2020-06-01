@@ -1,0 +1,83 @@
+<div class="container">
+    <form name="createUsageForm">
+        <span role="button" data-toggle="collapse" data-target="#usage">
+            <div class="toggle-header">
+                <p class="pull-left"><i class="fa fa-plus"></i> Add Usage</p>
+            </div>
+        </span>
+
+        <div id="usage" class="collapse">
+            <div class="form-group">
+                <label><i class="required-ind" ng-if="createUsageForm.organization_name.$invalid"></i>* Organization Name</label>
+                <select class="form-control" ng-model="vm.org_id" ng-options="x.org_id as x.org_name for x in org_details" name="org_name" required>
+                <option value="">-- Select Organization --</option>
+                </select>
+                <div class="error-container" ng-show="createInstallationForm.email.$touched && createInstallationForm.email.$error.required">Field is required</div>
+            </div>
+            <div class="form-group">
+                <b>Is Demo ?</b><input type="checkbox" ng-model="vm.check_demo_status">
+            </div>
+            <div class="modal-footer">             
+                <button type="button" class="btn btn-primary" ng-disabled="createUsageForm.$invalid" ng-click="submit()">Submit</button> 
+            </div>
+        </div>
+    </form> 
+
+    <div class="row">
+        <div class="col-md-12">  
+        <h4>Usage Informations</h4>
+        <div id="grid1" ui-grid="vm.UsageListOptions" ui-grid-auto-resize></div>
+        </div>  
+    </div>
+
+
+    <div class="modal fade" id="viewUsageModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header"> 
+                <div class="close"  data-dismiss="modal" >x</div>          
+                <h4 class="modal-title">View Usage Informations</h4>
+            </div>
+            <div class="modal-body">
+                <form name="createOrgForm">
+                    <div class="form-group">
+                        <b>Organization Name</b>
+                        <ul class="unstyled">
+                        <li>{{vm.usageDetails.org_name}}</li></ul>
+                    </div>
+                    <div class="form-group">
+                        <b>Organization ID</b>
+                        <ul class="unstyled">
+                        <li>{{vm.usageDetails.org_id}}</li></ul>
+                    </div>
+                    <div class="form-group">
+                    <b>Is Demo</b>
+                    <input type="checkbox" ng-model="vm.check_demo_status" ng-readonly="true">
+                    </div>
+                    <div class="form-group">
+                        <b>Free Limit</b>
+                        <ul class="unstyled">
+                        <li>{{vm.usageDetails.free_limit}}</li></ul>
+                    </div>
+                    <div class="form-group">
+                        <b>Counter</b>
+                        <ul class="unstyled">
+                        <li>{{vm.usageDetails.counter}}</li></ul>
+                    </div>
+                    <div class="form-group">
+                        <b>Status</b>
+                        <ul class="unstyled">
+                        <li>{{vm.usageDetails.status}}</li></ul>
+                    </div>
+                    <div class="form-group">
+                        <b>Start Date</b>
+                        <ul class="unstyled">
+                        <li>{{vm.usageDetails.start_date}}</li></ul>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

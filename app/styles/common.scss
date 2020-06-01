@@ -1,0 +1,39 @@
+.display-none {
+    display: none;   
+}
+
+.display-block {
+    display: block;
+}
+
+.display-inline-block {
+    display: block;
+}
+
+.pull-left {
+	float: left;
+}
+
+.pull-right {
+	float: right;
+}
+
+.clear-both {
+	clear: both;
+}
+
+input.ng-touched.ng-invalid, input.ng-dirty.ng-invalid {
+  border-color: $danger-color;
+}
+
+.text-align-center {
+	text-align: center;
+}
+
+.text-align-right {
+	text-align: right;
+}
+
+.text-align-left {
+	text-align: left;
+}

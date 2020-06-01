@@ -1,0 +1,129 @@
+<style type="text/css">
+	.grid {
+      width: 1000px;
+      height: 500px;
+     }
+    
+/*.btn-switch {
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 25px;
+    cursor: pointer;
+    background-color: #F27878;
+    border: 2px solid #F27878;
+    border-radius: 40px;
+    
+   
+}
+ .btn-switch-circle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        height: 25px;
+        width: 25px;
+        background-color: #fff;
+        border-radius: 40px;
+    }
+
+	.btn-switch--on {
+    background-color: #80CDBE;
+    border: 2px solid #80CDBE;
+    
+ 
+}
+   .btn-switch-circle--on {
+        left: auto;
+        right: 0;
+}*/
+</style>
+<div class="container"> 
+	<div class="container" class="col-md-6">
+		<section ng-app="infynectApp" ng-controller="NodedetailsController as tab">
+			<ul class="nav nav-pills">
+				<li ng-class="{active:tab.isSet(1)}" ng-show=!display_flag><a href ng-click="tab.setTab(1)">Container</a></li>
+				<li ng-class="{active:tab.isSet(2)}" ng-show=!display_flag><a href ng-click="tab.setTab(2)">Remote Command</a></li>
+				<li ng-class="{active:tab.isSet(3)}" ng-show=!display_flag><a href ng-click="tab.setTab(3)">Log Status</a></li>
+				<!-- <li ng-class="{active:tab.isSet(4)}" ng-show=!display_flag><a href ng-click="tab.setTab(4)">Alarm</a></li> -->
+			</ul>	
+			<div class="col-md-9">					
+			<div ng-show="tab.isSet(1)">
+				<div class="dashboard">
+					<div class="row">
+						<div class="col-md-12">	
+							<h4>Container</h4>
+							<div class="grid" id="grid1" ui-grid="vm.containerListOptions"  ui-grid-auto-resize></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div ng-show="tab.isSet(2)">
+				<label ng-show="vm.role_status" >Custom Command: <input type="checkbox" ng-model="vm.customcmd" ></label><br/>
+				<div class="col-md-12" ng-if=vm.customcmd>
+					<input type="button" value="FAQ" ng-click="vm.viewFAQ()"class="pull-right btn btn-default">
+					<input type="text" ng-model="vm.cmdVal" name="cmdVal">	
+					<div ng-show="vm.faq_flag">
+						<b>Example</b><nobr>
+						<ul class="unstyled">
+						<li ng-repeat="x in details">
+						<b>{{x.label}} </b> <br> &nbsp; {{x.cmd}} <br> &nbsp; {{x.example}}
+						</li></nobr></ul><br>
+						<li><b>Note: </b> IP acquired from customer</li>
+					</div><br>
+				</div>
+				<div class="container" class="col-md-12">
+					<div ng-if=!vm.customcmd>
+						<h5 class="row">Select Command</h5>
+						<select class="row col-md-12" ng-change="vm.commandSelect()" ng-options="x.label for x in commands" ng-model="vm.selectedcommand">
+						<!-- <option></option> -->
+						</select><br><br>
+					</div>
+					<input type="button" value="Submit" ng-click="vm.rcSubmit()" class="pull-left btn btn-primary">
+					<div ng-show="vm.out_flag" class="container row col-md-12">
+						<h5 class="row">Output</h5>
+						<textarea rows = "5" class="form-control" >{{vm.rcOut}}</textarea><br>
+					</div>
+					<div ng-show="vm.out_flag" class="container row col-md-12">
+						<h5 class="row">Expected Output</h5>
+						<br><textarea rows = "5" class="form-control" ng-disabled="true">{{vm.output}}</textarea>
+					</div>
+				</div>
+			</div>
+			<div ng-show="tab.isSet(3)">
+				<div class="dashboard">
+					<div class="row">
+						<div class="col-md-12">	
+							<h4>Services</h4>
+							<div class="grid" id="grid1" ui-grid="vm.servicesListOptions"  ui-grid-auto-resize></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- <div style="white-space: pre-line" ng-show="tab.isSet(4)">
+			<div ng-show="flag_alarm_lan" >
+					<b>LAN Connection</b>
+					<div ng-show=alarm_status>
+						<span class="fa fa-check-circle" style="color: green; font-size: 20px"></span>  {{alarm_lan}}
+					</div>
+					<div ng-show=!alarm_status>
+						<span class="fa fa-ban" style="color: red; font-size: 20px"></span>  {{alarm_lan}}
+					</div>
+				</div>
+				<div ng-show="!flag_alarm_lan" >
+					<b>LAN Connection</b>
+					<br>
+					<div class="loader"></div></div>
+				<div ng-show="!flag_alarm_removable" >
+					<b>Removable Disk Connection</b>
+					<br>
+					<div class="loader"></div></div>
+				<div ng-show="flag_alarm_removable" >
+					<b>Removable Disk Connection</b>
+					<span class="fa fa-check-circle" style="color: green; font-size: 20px"></span> {{alarm_removable}}</div>
+			</div> -->
+			</nobr></div>
+		</section>
+	</div>
+</div>

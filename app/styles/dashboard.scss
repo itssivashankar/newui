@@ -1,0 +1,83 @@
+.dashboard {
+	.link {
+		color: #167ab9;
+		cursor: pointer;
+	}
+
+	li {
+		list-style: none;
+		font-weight: bold;
+	}
+
+	.total-nodes {
+		background-color: #97BBCD;
+		width: 10px;
+    	height: 10px;
+    	display: inline-block;
+	}	
+
+	.active-nodes {
+		background-color: #DCDCDC;
+		width: 10px;
+    	height: 10px;
+    	display: inline-block;
+	}
+
+	.inactive-nodes {
+		background-color: #F7464A;
+		width: 10px;
+    	height: 10px;
+    	display: inline-block;
+	}
+
+	.accelerated{
+		background-color: #{$accelerated};
+		width: 10px;
+    	height: 10px;
+    	border-radius: 50%;
+    	display: inline-block;
+	}
+
+	.actual{
+		background-color: #{$actual};
+		width: 10px;
+    	height: 10px;
+    	border-radius: 50%;
+    	display: inline-block;
+	}
+
+	.cpu{
+		background-color: #{$cpu};
+		width: 10px;
+    	height: 10px;
+    	border-radius: 50%;
+    	display: inline-block;
+	}
+	.memory{
+		background-color: #{$memory};
+		width: 10px;
+    	height: 10px;
+    	border-radius: 50%;
+    	display: inline-block;
+	}
+	.storage{
+		background-color: #{$storage};
+		width: 10px;
+    	height: 10px;
+    	border-radius: 50%;
+    	display: inline-block;
+	}
+	
+	.available{
+		background-color: #{$available};
+		width: 10px;
+    	height: 10px;
+    	display: inline-block;
+	}
+	.utilized{
+		background-color: #{$utilized};
+		width: 10px;
+    	height: 10px;
+    	display: inline-block;
+	}
+}

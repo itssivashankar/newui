@@ -1,0 +1,33 @@
+<div class="container">
+	<form name="createUserForm">
+	  	<div class="form-group">
+			<label><i class="required-ind" ng-if="createUserForm.username.$invalid">*</i>Username</label>
+			<input type="text" class="form-control" ng-model="vm.user.user_name" name="username" placeholder="Enter Username" required>				
+			<div class="error-container" ng-show="createUserForm.username.$touched && createUserForm.username.$error.required">Field is required</div>
+		</div>
+		<div class="form-group">
+			<label><i class="required-ind" ng-if="createUserForm.firstname.$invalid">*</i>Firstname</label>
+			<input type="text" class="form-control" ng-model="vm.user.first_name" name="firstname" placeholder="Enter Firstname" required>				
+			<div class="error-container" ng-show="createUserForm.firstname.$touched && createUserForm.firstname.$error.required">Field is required</div>
+		</div>
+		<div class="form-group">
+			<label><i class="required-ind" ng-if="createUserForm.lastname.$invalid">*</i>Lastname</label>
+			<input type="text" class="form-control" ng-model="vm.user.last_name" name="lastname" placeholder="Enter Lastname" required>				
+			<div class="error-container" ng-show="createUserForm.lastname.$touched && createUserForm.lastname.$error.required">Field is required</div>
+		</div>
+		<div class="form-group">
+			<label><i class="required-ind" ng-if="createUserForm.email.$invalid">*</i>Email</label>
+			<input type="email" class="form-control" ng-model="vm.user.mail_id" name="email" placeholder="Enter Email" required>				
+			<div class="error-container" ng-show="createUserForm.email.$touched && createUserForm.email.$error.required">Field is required</div>
+		</div>
+		<div class="form-group">
+			<label><!-- <i class="required-ind" ng-if="createUserForm.password.$invalid">*</i> -->Password</label>
+			<input type="password" class="form-control" ng-model="vm.user.password" name="password" placeholder="Enter password">				
+			<!-- <div class="error-container" ng-show="createUserForm.password.$touched && createUserForm.password.$error.required">Field is required</div> -->
+		</div>
+	</form>
+
+	<div class="modal-footer">                
+      <button type="button" class="btn btn-primary" ng-disabled="createUserForm.$invalid" ng-click="vm.updateUser()">Update</button>	
+    </div>
+</div>

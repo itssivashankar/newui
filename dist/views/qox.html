@@ -1,0 +1,26 @@
+<div class="container">
+	<form name="createUserForm">
+	  	<div class="form-group">
+			<label><i class="required-ind" ng-if="createUserForm.ip.$invalid"></i>IP</label>
+			<input type="text" class="form-control" ng-model="ip" name="ip" placeholder="Ex 192.168.1.56 or 192.168.1.0/24" required ng-pattern="/\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/" >
+			<div class="error-container" ng-show="aclForm.ip.$error.pattern">Enter a valid IP</div>				
+			<div class="error-container" ng-show="createUserForm.ip.$touched && createUserForm.ip.$error.required">Field is required</div>
+		</div>
+		<div class="form-group">
+			<label><i class="required-ind" ng-if="createUserForm.bytes.$invalid"></i>Bytes Per Second</label>
+			<input type="number" class="form-control" ng-model="bytes" name="bytes" placeholder="Enter bytes" required>				
+			<div class="error-container" ng-show="createUserForm.bytes.$touched && createUserForm.bytes.$error.required">Field is required</div>
+		</div>
+	</form>
+
+	<div class="modal-footer">                
+      <button type="button" class="btn btn-primary" ng-disabled="createUserForm.$invalid" ng-click="qoxData()">Submit</button>	
+    </div>
+
+    <div class="col-md-6">	
+			<h4>Qox</h4>
+			<div id="grid1" ui-grid="vm.qoxListOptions" ui-grid-auto-resize></div>
+		</div>	
+		
+	</div><br><br><br>
+</div>            

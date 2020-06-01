@@ -1,0 +1,82 @@
+<div class="container">
+    <form name="createRemoteAccessForm">
+        <span role="button" data-toggle="collapse" data-target="#command">
+            <div class="toggle-header">
+                <p class="pull-left"><i class="fa fa-plus"></i> Add a Command</p>
+            </div>
+        </span>
+        <div id="command" class="collapse">
+       		<div class="form-group">
+				<label><i class="required-ind" ng-if="createRemoteAccessForm.label.$invalid">*</i>Label</label>
+				<input type="label" class="form-control" ng-model="label" name="label" required>
+				<div class="error-container" ng-show="createRemoteAccessForm.label.$touched && createRemoteAccessForm.label.$error.required">Field is required</div>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createRemoteAccessForm.command.$invalid">*</i>Command</label>
+				<input type="command" class="form-control" ng-model="command" name="command" required>
+				<div class="error-container" ng-show="createRemoteAccessForm.command.$touched && createRemoteAccessForm.command.$error.required">Field is required</div>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createRemoteAccessForm.type.$invalid">*</i>Command Type</label>
+				<select class="form-control" ng-model="type" ng-options="o as o for o in vm.types" ><option value="">-- Select Command Type --</option></select>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createRemoteAccessForm.access_role.$invalid">*</i>Access Privilege</label>
+				<select class="form-control" multiple name="dev_type" ng-model="access_role" ng-options="o as o for o in vm.roles"></select>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createRemoteAccessForm.ex_output.$invalid"></i>Expected output</label>
+                <textarea rows = "5" class="form-control" name="ex_output" ng-model="vm.command.ex_output"></textarea><br>
+			</div>
+        <div class="modal-footer">             
+            <button type="button" class="btn btn-primary" ng-click="submit()()">Submit</button> 
+        </div>
+        </div>
+        	
+        <div class="modal fade" id="updateCommandModal" role="dialog">
+	    <div class="modal-dialog">
+	    
+	   <div class="modal-content">
+	        <div class="modal-header">          
+	          <h4 class="modal-title">Update RemoteCommand</h4>
+	        </div>
+	        <div class="modal-body">
+	          <form name="createRemoteAccessForm">
+	          	<div class="form-group">
+					<label><i class="required-ind" ng-if="createRemoteAccessForm.label.$invalid">*</i>Label</label>
+					<input type="label" class="form-control" ng-model="vm.command.label" name="label" required>
+					<div class="error-container" ng-show="createRemoteAccessForm.label.$touched && createRemoteAccessForm.label.$error.required">Field is required</div>
+				</div>
+				<div class="form-group">
+					<label><i class="required-ind" ng-if="createRemoteAccessForm.command.$invalid">*</i>Command</label>
+					<input type="command" class="form-control" ng-model="vm.command.command" name="command" required>
+					<div class="error-container" ng-show="createRemoteAccessForm.command.$touched && createRemoteAccessForm.command.$error.required">Field is required</div>
+				</div>
+				<div class="form-group">
+					<label><i class="required-ind" ng-if="createRemoteAccessForm.type.$invalid">*</i>Command Type</label>
+					<select class="form-control" ng-model="vm.command.type" ng-options="o as o for o in vm.types" ><option value="">-- Select Command Type --</option></select>
+				</div>
+				<div class="form-group">
+					<label><i class="required-ind" ng-if="createRemoteAccessForm.access_role.$invalid">*</i>Access Privilege</label>
+					<select class="form-control" multiple name="dev_type" ng-model="vm.command.access_role" ng-options="o as o for o in vm.roles"></select>
+				</div>
+				<div class="form-group">
+					<label><i class="required-ind" ng-if="createRemoteAccessForm.ex_output.$invalid"></i>Expected output</label>
+	                <textarea rows = "5" class="form-control" name="ex_output" ng-model="vm.command.ex_output"></textarea><br>
+				</div>
+	          </form>
+	        </div>
+	        <div class="modal-footer">          
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+	          <button type="button" class="btn btn-primay" ng-click="vm.updateRemoteCommand()">Update</button>	
+	        </div>
+	      </div>
+	    </div>
+  </div>
+  
+    <div class="col-md-12">	
+		<h4>RemoteCommand</h4>
+		<div id="grid1" ui-grid="vm.commandListOptions" ui-grid-auto-resize></div>
+	</div>
+
+</div>

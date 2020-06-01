@@ -1,0 +1,114 @@
+<div>
+	<h4>Admin Profile</h4> 
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="vm.resetForm()">Add a User</button>
+<br /><br />
+	<div class="row">
+		<div class="col-md-12">	
+			<div id="grid1" ui-grid="vm.usersListOptions" ui-grid-auto-resize></div>
+		</div>	
+	</div>
+
+	<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">          
+          <h4 class="modal-title">Create a user</h4>
+        </div>
+        <div class="modal-body">
+          <form name="createUserForm">
+
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createUserForm.orgId.$invalid">*</i>Orgname</label>
+				<select class="form-control" name="org_id" ng-model="vm.user.org_id" ng-options="o.org_id as o.org_name for o in vm.orgList" ng-change="vm.fillDetails()" required></select>				
+			</div>
+
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createUserForm.firstname.$invalid">*</i>Firstname</label>
+				<input type="text" class="form-control" ng-model="vm.user.first_name" name="firstname" placeholder="Enter Firstname" ng-disabled="vm.first_name" required>				
+				<div class="error-container" ng-show="createUserForm.firstname.$touched && createUserForm.firstname.$error.required">Field is required</div>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createUserForm.lastname.$invalid">*</i>Lastname</label>
+				<input type="text" class="form-control" ng-model="vm.user.last_name" name="lastname" placeholder="Enter Lastname" ng-disabled="vm.last_name" required>				
+				<div class="error-container" ng-show="createUserForm.lastname.$touched && createUserForm.lastname.$error.required">Field is required</div>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createUserForm.role.$invalid">*</i>Role</label>
+				<select class="form-control" multiple name="dev_type" ng-model="vm.user.role" ng-options="o as o for o in vm.roles" required></select>				
+				<div class="error-container" ng-show="createUserForm.role.$touched && createUserForm.role.$error.required">Field is required</div>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createUserForm.email.$invalid">*</i>Email</label>
+				<input type="email" class="form-control" ng-model="vm.user.mail_id" name="email" placeholder="Enter Email" required>				
+				<div class="error-container" ng-show="createUserForm.email.$touched && createUserForm.email.$error.required">Field is required</div>
+			</div>
+			<div class="form-group">
+				<label><i class="required-ind" ng-if="createUserForm.password.$invalid">*</i>Password</label>
+				<input type="password" class="form-control" ng-model="vm.user.password" name="password" placeholder="Enter password" required>				
+				<div class="error-container" ng-show="createUserForm.password.$touched && createUserForm.password.$error.required">Field is required</div>
+			</div>
+          </form>
+        </div>
+        <div class="modal-footer">          
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primay" ng-disabled="createUserForm.$invalid" ng-click="vm.createUser()">Create</button>	
+        </div>
+      </div>
+    </div>
+  </div>
+	<!-- Modal -->
+  <div class="modal fade" id="userEditModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">          
+          <h4 class="modal-title">Update user</h4>
+        </div>
+        <div class="modal-body">
+			<form name="updateUserForm">
+
+				<div class="form-group">
+					<label><i class="required-ind" ng-if="createUserForm.orgId.$invalid">*</i>Orgname</label>
+					<select class="form-control" name="org_id" ng-model="vm.user.org_id" ng-options="o.org_id as o.org_name for o in vm.orgList" ng-change="vm.fillDetails()" required></select>				
+				</div>
+				<div class="form-group">
+					<label><i class="required-ind" ng-if="createUserForm.firstname.$invalid">*</i>Firstname</label>
+					<input type="text" class="form-control" ng-model="vm.user.first_name" name="firstname" placeholder="Enter Firstname" ng-disabled="vm.first_name" required>				
+					<div class="error-container" ng-show="createUserForm.firstname.$touched && createUserForm.firstname.$error.required">Field is required</div>
+				</div>
+				<div class="form-group">
+					<label><i class="required-ind" ng-if="createUserForm.lastname.$invalid">*</i>Lastname</label>
+					<input type="text" class="form-control" ng-model="vm.user.last_name" name="lastname" placeholder="Enter Lastname" ng-disabled="vm.last_name" required>				
+					<div class="error-container" ng-show="createUserForm.lastname.$touched && createUserForm.lastname.$error.required">Field is required</div>
+				</div>
+				<div class="form-group">
+					<label><i class="required-ind" ng-if="createUserForm.role.$invalid">*</i>Role</label>
+					<select class="form-control" name="dev_type" multiple ng-model="vm.user.roles" ng-options="o as o for o in vm.roles" required></select>				
+					<div class="error-container" ng-show="createUserForm.role.$touched && createUserForm.role.$error.required">Field is required</div>
+				</div>
+				<div class="form-group">
+					<label><i class="required-ind" ng-if="createUserForm.email.$invalid">*</i>Email</label>
+					<input type="email" class="form-control" ng-model="vm.user.mail_id" name="email" placeholder="Enter Email" ng-disabled="vm.mail_id" required>				
+					<div class="error-container" ng-show="createUserForm.email.$touched && createUserForm.email.$error.required">Field is required</div>
+				</div>
+				<div class="form-group">
+					<label><!-- <i class="required-ind" ng-if="createUserForm.password.$invalid">*</i> -->Password</label>
+					<input type="password" class="form-control" ng-model="vm.user.password" name="password" placeholder="Enter password">				
+					<!-- <div class="error-container" ng-show="createUserForm.password.$touched && createUserForm.password.$error.required">Field is required</div> -->
+				</div>
+			</form>
+		</div>
+		<div class="modal-footer">     
+			<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+	      	<button type="button" class="btn btn-primary" ng-disabled="updateUserForm.$invalid" ng-click="vm.updateUser()">Update</button>	
+	    </div>
+	</div>
+
+
+</div>
+

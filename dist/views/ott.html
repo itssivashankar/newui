@@ -1,0 +1,46 @@
+<div class="container">
+	<form name="createOttForm">
+		<span role="button" data-toggle="collapse" data-target="#ott">
+			<div class="toggle-header">
+		  		<p class="pull-left"><i class="fa fa-plus"></i> Add Video</p>
+	    	</div>
+		</span>
+    	<div id="ott" class="collapse">
+	  	<dev class="form-group">
+			<label><i class="required-ind" ng-if="createOttForm.video_data.$invalid"></i>*Select Video</label>
+			<input class="form-control" ng-model="fileInfo" placeholder="Choose File" readonly/>
+		</dev>
+		<div class="fileUpload btn btn-primary pull-right">
+    		<span>Upload</span>
+    		<input type="file" class="upload" onchange="angular.element(this).scope().uploadFile(this)" accept="video/*"/>
+		</div><br><br>
+		<div class="form-group">
+			<label><i class="required-ind" ng-if="createOttForm.domain_name.$invalid"></i>*Domain</label>
+			<select id="select-selected" class="form-control" ng-model="domain_name" ng-options="x for x in domain_names" name="domain_name" ng-pattern='domain_pattern' required>
+			<option value="">-- Select Domain --</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label><i class="required-ind" ng-if="createOttForm.context.$invalid"></i>*Context</label>
+			<input type="text" class="form-control" ng-model="context" name="context" placeholder="Enter the Context" required>				
+			<div class="error-container" ng-show="createOttForm.context.$touched && createOttForm.context.$error.required">Field is required</div>
+		</div>
+
+		<div class="form-group">
+			<label><i class="required-ind" ng-if="createOttForm.file_name.$invalid"></i>*File Name</label>
+			<input type="text" class="form-control" ng-model="file_name" name="file_name" placeholder="Enter the Filename" required>				
+			<div class="error-container" ng-show="createOttForm.file_name.$touched && createOttForm.file_name.$error.required">Field is required</div>
+		</div>
+
+		<div class="modal-footer">        
+      		<button type="button" class="btn btn-primary" ng-disabled="createOttForm.$invalid" ng-click="ottData()">Submit</button>	
+    	</div>
+    	</div>
+    	<div class="col-md-12">	
+			<h4>Videos</h4>
+			<div id="grid1" ui-grid="ottListOptions" ui-grid-auto-resize></div>
+		</div>	
+	</form>
+</div>
+

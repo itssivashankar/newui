@@ -1,0 +1,43 @@
+<div class="container">
+	<form name="createUserForm">
+		<span role="button" data-toggle="collapse" data-target="#site">
+			<div class="toggle-header">
+		  		<p class="pull-left"><i class="fa fa-plus"></i> Add Sites</p>
+	    	</div>
+		</span>
+    	<div id="site" class="col-md-12 collapse">
+    		<div class="form-group">
+			<label><i class="required-ind" ng-if="createUserForm.orgin_ip.$invalid"></i>*Origin IP</label>
+			<input type="text" class="form-control" ng-model="orgin_ip" ng-pattern='ip_pattern' name="orgin_ip" placeholder="Enter Origin IP" required>				
+			<div class="error-container" ng-show="createUserForm.orgin_ip.$touched && createUserForm.orgin_ip.$error.required">Field is required</div>
+		</div>
+		<div class="form-group">
+			<label><i class="required-ind" ng-if="createUserForm.domain_name.$invalid"></i>*Domain</label>
+			<select id="select-selected" class="form-control" ng-model="domain_name" ng-options="x for x in domain_names" name="domain_name" ng-pattern='domain_pattern' required>
+			<option value="">-- Select Domain --</option>
+			</select>
+		</div><br>
+		<div class="form-group" ng-init="https='true'">
+			<label>Force HTTPS</label>
+			<fieldset>
+				<div class="radio-control">
+							<label> Yes <input type="radio" ng-model="https" name="https" value="true" ng-required="!https"></label>
+							<label> No <input type="radio" ng-model="https" name="https" value="false" ng-required="!https"></label>			
+				</div>				
+			</fieldset>
+		</div>
+		<div class="modal-footer">
+	  		<button ui-sref="main.certificates" type="button" class="btn btn-primary" ng-disabled="createUserForm.domain_name.$valid" ng-click="">Add New Domain</button>              
+      		<button type="button" class="btn btn-primary" ng-disabled="createUserForm.$invalid" ng-click="staticData()">Update</button>	
+    	</div>
+    	</div>
+	</form>
+	<div class="row">
+		<div class="col-md-12">	
+			<h4>Sites</h4>
+			<div id="grid1" ui-grid="vm.staticListOptions" ui-grid-auto-resize></div>
+		</div>	
+		
+	</div><br><br><br>
+
+</div>
